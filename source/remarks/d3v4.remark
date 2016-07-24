@@ -1,0 +1,193 @@
+class: center, middle
+
+# D3 V4 - What's new?
+
+<div class="bottom-left">
+Irene Ros <br/>
+@ireneros <br/>
+irene@bocoup.com <br/>
+</div>
+
+---
+
+# Modularity
+
+#### D3 v3 was one large library. You had to include all of it, even if you didn't need all of it.
+
+#### D3 v4 is actually a set of small modules. You can choose to use one or more as you need them.
+
+https://github.com/d3/
+
+You can import multiple modules, and they will not overwrite each other (they share
+the same `d3` namespace.)
+
+---
+
+# Modularity
+
+For example: `https://github.com/d3/d3-scale`
+Can be installed via npm:
+
+`npm install d3-scale`
+
+Note that each module has it's own dependencies. When installing them via npm, they
+will be pulled down for you, but if you were to include them manually, you need to 
+make sure those are included as well. For example:
+
+```html
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-format.v1.min.js"></script>
+<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale.v1.min.js"></script>
+```
+
+---
+
+# Modularity
+
+You can still use the entire v4 build by including it using your favorite method:
+
+```html
+<script src="https://d3js.org/d3.v4.js"></script>
+```
+
+---
+
+# Namespacing
+
+D3 v3's API was logically namespaced. For example:
+
+* `d3.scale.linear`
+* `d3.scale.ordinal`
+* `d3.time.format`
+* `d3.svg.axis`
+
+In D3 v4, all modules share a flat namespace `d3.*` as a result of adopting ES6 modules.
+
+* `d3.scale.linear` is now `d3.scaleLinear`
+* `d3.layout.treemap` is now `d3.treemap`
+
+This does mean you can't just swap in D3 v4 and expect it to work.
+
+---
+
+## Arrays
+
+### `d3.scan(arr, fn)`
+
+D3 v3's `d3.min` and `d3.max` would return the min or max element appropriatly, but
+you couldn't easily find out the original position of that element. In v4, `d3.scan`
+does just that using a comparator function.
+
+```javascript
+var settlersData = [
+  {name: "Wood", count: 2},
+  {name: "Ore", count: 3},
+  {name: "Sheep", count: 4},
+  {name: "Wheat", count: 1}
+];
+
+var idx = d3.scan(settlersData, function(a, b) { 
+  return a.count - b.count; 
+}); // 3
+settlersData[idx]; // {name: "Wheat", count: 1}
+```
+
+---
+
+### `d3.ticks(start, end, count)`
+
+A new method that will generate an array of `count+1` items equally spaced between
+`start` and `end`.
+
+```javascript
+var ticks = d3.ticks(0, 10, 5); // [0, 2, 4, 6, 8, 10]
+```
+
+Note that this method has nothing to do with axes.
+
+### `d3.tickStep(start, end, count)`
+
+Will give you the space between values that you would obtain from `d3.ticks`:
+
+```javascript
+d3.tickStep(0,10,5);
+// 2
+```
+
+---
+
+### `d3.range(start, end, increment)`
+
+Floating point math is fun:
+
+`0.2 * 3 = 0.6000000000000001`
+
+In D3 v3, `d3.range` tried to handle this:
+
+```javascript
+d3.range(0, 1, 0.2) // [0, 0.2, 0.4, 0.6, 0.8]
+```
+
+D3 v4's `d3.range` no longer does that:
+
+```javascript
+d3.range(0, 1, 0.2) // [0, 0.2, 0.4, 0.6000000000000001, 0.8]
+```
+
+This only matters if you are dealing with floating point numbers and you can
+always use `d3.format` to present them more consistently.
+
+---
+
+### `d3.zip(arr...)`
+
+Returns an array of arrays, where the ith array contains the ith element 
+from each of the argument arrays...
+
+```javascript
+d3.zip(["cat", "catnip"], ["dog", "peanut butter"]);
+
+// [["cat", "dog"], ["catnip", "peanut butter"]
+```
+
+
+
+---
+
+### method accessors
+
+Many utility methods now take an accessor method that has a consistent signature:
+
+`function(d, i, data) {...}`
+
+For example:
+
+```javascript
+var settlersData = [
+  {name: "Wood", count: 2},
+  {name: "Ore", count: 3},
+  {name: "Sheep", count: 4},
+  {name: "Wheat", count: 1}
+];
+
+d3.min(settlersData, function(d, i, data) {
+  return d.count;
+});
+```
+
+Previously some methods were not consistent about this (for example, `d3.quantiles`).
+
+---
+
+# Other small but notable
+
+D3 v4 now: 
+
+* Written in strict mode
+* The default build is anonymous (aka no global `d3` object is exported if AMD or CommonJS is detected.)
+* Uses only ASCII variable names and ASCII string literals. No more requirement to be explicit about UTF-8.

@@ -1,7 +1,222 @@
-@import url(https://fonts.googleapis.com/css?family=Droid+Serif)
+/* Fonts
+@font-face
+  font-family: 'Droid Serif'
+  font-style: normal
+  font-weight: 400
+  src: local("fonts/Droid Serif"), local("fonts/DroidSerif"), url(fonts/Droid-Serif.woff) format("woff")
 
-.remark-slides-area
-  font-family: "Droid Serif", Helvetica
-  .remark-slide-content
-    background: #333
-    color: #fafafa
+
+@font-face
+  font-family: 'Yanone Kaffeesatz'
+  font-style: normal
+  font-weight: 400
+  src: local("fonts/Yanone Kaffeesatz Regular"), local("fonts/YanoneKaffeesatz-Regular"), url(fonts/YanoneKaffeesatz-Regular.woff) format("woff")
+
+
+body
+  font-family: 'Droid Serif'
+  font-size: 20px
+
+h1, h2, h3
+  font-family: 'Helvetica'
+  font-weight: 400
+  margin-bottom: 0
+
+h1
+  font-size: 4em
+
+h2
+  font-size: 2em
+
+h3
+  font-size: 1.6em
+
+.footnote
+  position: absolute
+  bottom: 3em
+
+li p
+  line-height: 1.25em
+
+.red
+  color: #fa0000
+
+.large
+  font-size: 2em
+
+a
+  color: rgb(249, 38, 114)
+  text-decoration: none
+  > code
+    color: rgb(249, 38, 114)
+    text-decoration: none
+
+code
+  -moz-border-radius: 5px
+  -web-border-radius: 5px
+  background: #e7e8e2
+  border-radius: 5px
+  font-size: 16px
+
+.pull-left
+  float: left
+  width: 47%
+
+.pull-right
+  float: right
+  width: 47%
+  ~ p
+    clear: both
+
+#slideshow .slide .content
+  code
+    font-size: 0.8em
+  pre code
+    font-size: 0.9em
+    padding: 15px
+
+.inverse
+  background: #272822
+  color: #777872
+  text-shadow: 0 0 20px #333
+  h1, h2
+    color: #f3f3f3
+    line-height: 0.8em
+
+/* Slide-specific styling
+
+#slide-inverse .footnote
+  bottom: 12px
+  left: 20px
+
+#slide-how .slides
+  font-size: 0.9em
+  position: absolute
+  top: 151px
+  right: 140px
+  h3
+    margin-top: 0.2em
+  .first, .second
+    padding: 1px 20px
+    height: 90px
+    width: 120px
+    -moz-box-shadow: 0 0 10px #777
+    -webkit-box-shadow: 0 0 10px #777
+    box-shadow: 0 0 10px #777
+  .first
+    background: #fff
+    position: absolute
+    top: 20%
+    left: 20%
+    z-index: 1
+  .second
+    position: relative
+    background: #fff
+    z-index: 0
+
+/* Two-column layout
+
+.left-column
+  color: #777
+  width: 20%
+  height: 92%
+  float: left
+  h2:last-of-type, h3:last-child
+    color: #000
+
+.right-column
+  width: 75%
+  float: right
+  padding-top: 2em
+
+/* Presentation-specific styles
+
+.remark-slide-container:nth-child(1) .remark-slide-content, .inverse
+  background-color: #272822
+  color: #777872
+
+.remark-slide-container:nth-child(1) .remark-slide-content
+  h1, h2
+    color: #f3f3f3
+    line-height: 0.8em
+
+.inverse
+  h1, h2
+    color: #f3f3f3
+    line-height: 0.8em
+
+.remark-slide-container:nth-child(1) .remark-slide-content a, .inverse a
+  color: orange
+
+.smaller code
+  font-size: 12px
+
+/* Slide-specific styling
+
+#slide-inverse .footnote
+  bottom: 12px
+  left: 20px
+
+#slide-how .slides
+  font-size: 0.9em
+  position: absolute
+  top: 151px
+  right: 140px
+  h3
+    margin-top: 0.2em
+  .first, .second
+    padding: 1px 20px
+    height: 90px
+    width: 120px
+    -moz-box-shadow: 0 0 10px #777
+    -webkit-box-shadow: 0 0 10px #777
+    box-shadow: 0 0 10px #777
+  .first
+    background: #fff
+    position: absolute
+    top: 20%
+    left: 20%
+    z-index: 1
+  .second
+    position: relative
+    background: #fff
+    z-index: 0
+
+img
+  max-width: 100%
+
+.images img
+  max-height: 100px
+  display: inline-block
+  margin-right: 1em
+  &:last-child
+    margin-right: 0
+
+.center ul
+  list-style-type: none
+
+.bottom-left 
+  position: absolute
+  bottom: 10%
+  left: 20%
+  text-align: left
+  
+h1 code, h2 code, h3 code, h4 code
+  font-size: inherit
+  font-weight: 400
+
+.paddingless
+  margin-top: 20px
+  margin-left: -50px
+
+.scrollable
+  overflow-y: scroll
+
+/* Presentation-specific styles
+
+.images img
+  max-height: 100px
+  display: inline-block
+  margin-right: 1em
+  &:last-child
+    margin-right: 0
