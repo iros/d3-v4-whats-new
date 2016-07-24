@@ -33,6 +33,8 @@ end
 proxy "/remarks/", "/index.html"
 proxy "/remarks", "/index.html"
 
+set :fonts_dir, 'source/fonts/'
+
 configure :development do
   activate :livereload
 end
