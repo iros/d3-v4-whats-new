@@ -2,11 +2,17 @@ class: center, middle
 
 # D3 V4 - What's new?
 
+Play along:
+
+[D3 v3 playground](http://jsbin.com/sekuzusiga/edit?html,js,console) |
+[D3 v4 playground](http://jsbin.com/vuhivaqeye/edit?html,js,console)
+
 <div class="bottom-left">
 Irene Ros <br/>
 @ireneros <br/>
 irene@bocoup.com <br/>
 </div>
+
 
 ---
 
@@ -72,6 +78,31 @@ In D3 v4, all modules share a flat namespace `d3.*` as a result of adopting ES6 
 * `d3.layout.treemap` is now `d3.treemap`
 
 This does mean you can't just swap in D3 v4 and expect it to work.
+
+---
+
+# Method accessors
+
+Many utility methods now take an accessor method that has a consistent signature:
+
+`function(d, i, data) {...}`
+
+For example:
+
+```javascript
+var settlersData = [
+  {name: "Wood", count: 2},
+  {name: "Ore", count: 3},
+  {name: "Sheep", count: 4},
+  {name: "Wheat", count: 1}
+];
+
+d3.min(settlersData, function(d, i, data) {
+  return d.count;
+});
+```
+
+Previously some methods were not consistent about this (for example, `d3.quantiles`).
 
 ---
 
@@ -155,34 +186,100 @@ d3.zip(["cat", "catnip"], ["dog", "peanut butter"]);
 // [["cat", "dog"], ["catnip", "peanut butter"]
 ```
 
-
-
 ---
 
-### method accessors
+### `d3.histogram`
 
-Many utility methods now take an accessor method that has a consistent signature:
 
-`function(d, i, data) {...}`
-
-For example:
-
-```javascript
-var settlersData = [
-  {name: "Wood", count: 2},
-  {name: "Ore", count: 3},
-  {name: "Sheep", count: 4},
-  {name: "Wheat", count: 1}
+``` javascript
+var values = [
+  { val : 1 },
+    { val : 1 },
+    { val : 4 },
+    { val : 5 },
+    { val : 23 },
+    { val : 1 },
+    { val : 4 }
 ];
+var hist = d3.layout.histogram()
+  .bins(3); 
 
-d3.min(settlersData, function(d, i, data) {
-  return d.count;
-});
+hist(values); // [Array[6], Array[0], Array[1]]
 ```
 
-Previously some methods were not consistent about this (for example, `d3.quantiles`).
 
 ---
+
+### `d3.histogram`
+
+* The histogram API used to live under layouts, `d3.layouts.histogram`. Now it lives under `d3.histogram`.
+* The `bins` method, was renamed to `thresholds`
+* `dx` which specified the bin width is gone, there are now `x0` and `x1` which specify the start and end range
+of a bin. `x0` will equal the `x1` of the previous bin.
+
+The binning is also now different. In v3 the values we have for `x` and `dx` are:
+
+`[1, 7.33333] [8.33333333, 7.33333], [15.666666666666666, 7.33333]`
+
+In V4 the bins are:
+`[1, 10] [10, 20] [20, 23]`
+
+
+---
+
+# Axes
+
+In v3, you had to style the axes or it would look like this:
+
+![v3 axes](https://raw.githubusercontent.com/d3/d3/master/img/axis-v3.png)
+
+```css
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+```
+
+```javascript
+d3.select(".axis")
+    .call(d3.svg.axis()
+        .scale(x)
+        .orient("bottom"));
+```
+
+---
+
+# Axes
+
+In v4, styling is taken care of:
+
+```javascript
+var x = d3.scaleLinear()
+  .domain([1,10])
+  .range([1,300]);
+
+var axis = d3.axisTop(x);
+
+d3.select("body").append("svg")
+    .attr("class", "axis")
+    .attr("width", 310)
+    .attr("height", 30)
+  .append("g")
+    .attr("transform", "translate(0,20)")
+    .call(axis);
+```
+
+Results in:
+
+![v4 axes](https://i.gyazo.com/95a8056bc4643c05a8f4e651cab14840.png)
+
+The default styles have been changed to offset the axis by 0.5px which fixes a crisp-edges rendering issue on safari where the axis would be drawn 2px thick.
 
 # Other small but notable
 
