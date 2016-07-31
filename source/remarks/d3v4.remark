@@ -4,12 +4,12 @@ class: center, middle
 
 Play along:
 
-[D3 v3 playground](http://jsbin.com/sekuzusiga/edit?html,js,console) |
-[D3 v4 playground](http://jsbin.com/vuhivaqeye/edit?html,js,console)
+[D3 v3 playground](http://jsbin.com/degoxo/1/edit?html,js,console,output) |
+[D3 v4 playground](http://jsbin.com/yoruka/1/edit?html,js,console,output)
 
 <div class="bottom-left">
-Irene Ros <br/>
-@ireneros <br/>
+<a href="http://ireneros.com">Irene Ros</a><br/>
+<a href="http://twitter.com/ireneros">@ireneros</a><br/>
 irene@bocoup.com <br/>
 </div>
 
@@ -20,12 +20,13 @@ irene@bocoup.com <br/>
 
 #### D3 v3 was one large library. You had to include all of it, even if you didn't need all of it.
 
+--
+
 #### D3 v4 is actually a set of small modules. You can choose to use one or more as you need them.
 
 https://github.com/d3/
 
-You can import multiple modules, and they will not overwrite each other (they share
-the same `d3` namespace.)
+![modules](https://i.gyazo.com/d4661085579da7bbbf82e47ca62022db.png)
 
 ---
 
@@ -35,6 +36,8 @@ For example: `https://github.com/d3/d3-scale`
 Can be installed via npm:
 
 `npm install d3-scale`
+
+--
 
 Note that each module has it's own dependencies. When installing them via npm, they
 will be pulled down for you, but if you were to include them manually, you need to 
@@ -72,10 +75,14 @@ D3 v3's API was logically namespaced. For example:
 * `d3.time.format`
 * `d3.svg.axis`
 
+--
+
 In D3 v4, all modules share a flat namespace `d3.*` as a result of adopting ES6 modules.
 
 * `d3.scale.linear` is now `d3.scaleLinear`
 * `d3.layout.treemap` is now `d3.treemap`
+
+--
 
 This does mean you can't just swap in D3 v4 and expect it to work.
 
@@ -109,39 +116,57 @@ Previously some methods were not consistent about this (for example, `d3.quantil
 # Selections
 
 * Selections no longer subclass Array by extending its prototype. They are now plain objects.
+
+--
+
 * There is a new method called `.nodes` to retrieve all nodes within a selection as an array.
+
+--
+
 * Selections are immutable (parents and elemnts never change, though their attributes do obviously.) For example.
 `selection.sort` will return a new selection.
+
+--
+
 * `selection.insert` will now always add elements to the beginning.
 
-* There's a new lifecycle event! `merge`. It's the combination of `enter` and `update` (which is just the data binding.)
+--
+
+* New lifecycle event (ish)! `merge`.
 
 ---
 
+[example](http://jsbin.com/cipebe/4/edit?html,js,console,output)
+
 In v3:
 ```javascript
-var circle = svg.selectAll("circle").data(data) // UPDATE
-    .style("fill", "blue");
+var circleBinding = svg.selectAll("circle").data(data);
+ 
+circleBinding.style("fill", "blue"); // UPDATE
 
-circle.exit().remove(); // EXIT
+circleBinding.exit().remove(); // EXIT
 
-circle.enter().append("circle") // ENTER; modifies UPDATE!
+circleBinding.enter().append("circle") // ENTER; modifies UPDATE!
     .style("fill", "green");
 
-circle // ENTER + UPDATE
+circleBinding // ENTER + UPDATE
     .style("stroke", "black");
 ```
 
+--
+
 In v4:
 ```javascript
-var circle = svg.selectAll("circle").data(data) // UPDATE
-    .style("fill", "blue");
+var circleBinding = svg.selectAll("circle").data(data); 
 
-circle.exit().remove(); // EXIT
+circleBinding.style("fill", "blue"); // UPDATE
 
-circle.enter().append("circle") // ENTER
+circleBinding.exit().remove(); // EXIT
+
+circleBinding.enter().append("circle") // ENTER
     .style("fill", "green")
-  .merge(circle) // ENTER + UPDATE
+
+  .merge(circleBinding) // ENTER + UPDATE
     .style("stroke", "black");
 ```
 
@@ -149,11 +174,28 @@ circle.enter().append("circle") // ENTER
 
 # Selections ([d3-selection](https://github.com/d3/d3-selection/blob/master/README.md))
 
-* To move a selection to the front of its siblings call `selection.raise`
-* To move it backwards, call `selection.lower`
+* To move a selection to the front of its siblings call `selection.raise`. To move it backwards, call `selection.lower`
+
+--
+
 * You can dispatch events on selections using `selection.dispatch`
+
+--
+
 * The `selection.call` method no longer sets `this` to be the selection. It is now passed as the first
 argument to the callback.
+
+In v3:
+
+
+```javascript
+d3.selectAll("div.states")
+  .call(function() {
+    d3.selectAll(this)...
+  })
+```
+
+In V4:
 
 ```javascript
 d3.selectAll("div.states")
@@ -197,20 +239,34 @@ d3.selectAll(".apple")
     .remove();
 ```
 
+--
+
 * `selection.interrupt` stops active transitions and cancels all scheduled transitions on the selection.
+
+--
+
 * `d3.active` lets you select a transition that is currently active on a given node. 
+
+--
+
 * All transition callbacks recieve the standard arguments `(d, i, nodes)` - which impacts in particular the `attrTween` and `styleTween` functions which took a tween function or style value as the third argument.
 
 ---
 
-# Scales
+# Scales ([d3-scale](https://github.com/d3/d3-scale/blob/master/README.md))
 
 * Lots of renaming:
- * `d3.scale.linear` -> `d3.scaleLinear`
- * `d3.scale.sqrt` -> `d3.scaleSqrt`
- * `d3.scale.pow` -> `d3.scalePow`
+
+ * `d3.scale.linear` &#8594; `d3.scaleLinear`
+ * `d3.scale.sqrt` &#8594; `d3.scaleSqrt`
+ * `d3.scale.pow` &#8594; `d3.scalePow`
+
+--
 
 * Scales now generate ticks in the same order as the domain (useful if you have a descending scale)
+
+--
+
 * You can specify what to do when a scale recieves a value that is outside the domain using `.unknown`:
 
 ```javascript
@@ -225,9 +281,9 @@ x(2); // undefined
 
 ---
 
-# Scales
+# Scales ([d3-scale](https://github.com/d3/d3-scale/blob/master/README.md))
 
-* Categorical color scales have changed. They have been renamed: `d3.scale.category10` -> `d3.schemeCategory10` and they are no longer actual scales but just array of numbers:
+* Categorical color scales have changed. They have been renamed: `d3.scale.category10` &#8594; `d3.schemeCategory10` and they are no longer actual scales but just array of numbers:
 
 In v3:
 
@@ -239,6 +295,8 @@ In V4:
 ```javascript
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 ```
+
+--
 
 * New sequential scales - instead of outputting to a range, they use an interpolator. Most useful for sequential color schemes. Lots of new interplators inspired by matplotlib's perceptually motivated colormaps.
 
@@ -279,7 +337,7 @@ line.context(context)(data);
 
 ---
 
-## Arrays ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
+# Arrays ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
 
 ### `d3.scan(arr, fn)`
 
@@ -303,7 +361,7 @@ settlersData[idx]; // {name: "Wheat", count: 1}
 
 ---
 
-# Array Helper: Ticks
+# Arrays ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
 
 ### `d3.ticks(start, end, count)`
 
@@ -327,7 +385,7 @@ d3.tickStep(0,10,5);
 
 ---
 
-# Array helper: Range
+# Arrays ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
 
 ###`d3.range(start, end, increment)`
 
@@ -352,7 +410,7 @@ always use `d3.format` to present them more consistently.
 
 ---
 
-# Array Helper: Zip
+# Arrays ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
 
 ### `d3.zip(arr...)`
 
@@ -371,35 +429,36 @@ d3.zip(["cat", "catnip"], ["dog", "peanut butter"]);
 
 ### `d3.histogram`
 
-Previously in v3:
-
-``` javascript
+In v4:
+```javascript
 var values = [
-  { val : 1 },
-    { val : 1 },
-    { val : 4 },
-    { val : 5 },
-    { val : 23 },
-    { val : 1 },
-    { val : 4 }
+  { val : 1 }, { val : 1 }, { val : 4 }, { val : 5 }, { val : 23 }, 
+  { val : 1 }, { val : 4 }
 ];
-var hist = d3.layout.histogram()
-  .bins(3)
+var hist = d3.histogram()
+  .thresholds(3)
   .value(function(d) { 
     return d.val; 
   }); 
 ```
-
 ---
 
 # Histograms ([d3-array](https://github.com/d3/d3-array/blob/master/README.md))
 
 ### `d3.histogram`
 
-* The histogram API used to live under layouts, `d3.layouts.histogram`. Now it lives under `d3.histogram`.
+* `d3.layouts.histogram` is now `d3.histogram`
+
+--
+
 * The `bins` method, was renamed to `thresholds`
+
+--
+
 * `dx` which specified the bin width is gone, there are now `x0` and `x1` which specify the start and end range
 of a bin. `x0` will equal the `x1` of the previous bin.
+
+--
 
 The binning is also now different. In v3 the values we have for `x` and `dx` are:
 
@@ -467,7 +526,7 @@ The default styles have been changed to offset the axis by 0.5px which fixes a c
 
 ---
  
-# Axes
+# Axes ([d3-axis](https://github.com/d3/d3-axis/blob/master/README.md))
 
 A few other useful methods:
 
@@ -478,18 +537,35 @@ A few other useful methods:
 
 # Brushing ([d3-brush](https://github.com/d3/d3-brush/blob/master/README.md))
 
-### `d3.brush`
 
+* `d3.svg.brush` is now `d3.brush`
 
-* Replacing `d3.svg.brush`
+--
+
 * There are now 3 classes for brushing along the x, y or both dimensions: `d3.brushX`, `d3.brushY` or `d3.brush`.
+
+--
+
 * Brush is no longer depending on scales - they define a selection in screen coordinates and you can invert it using a scale of choice.
-* You an restrict a brushing area to a `brush.extent`, otherwise it defaults to the full SVG element.
+
+--
+
+* You can restrict a brushing area to a `brush.extent`, otherwise it defaults to the full SVG element.
+
+--
+
 * A brush doesn't store the active selection - it is now stored on the element to which the brush was applied. You can access it either via:
  * a brush event - retrieve element by calling `event.selection`.
  * Call `d3.brushSelection` on any given element.
+
+--
+
 * You can move the brush by calling `brush.move`
-* There are now default styling applied, so you don't have to.
+
+--
+
+* There are now default styling applied, so you don't have to add them manually.
+
 ---
 
 # Brushing ([d3-brush](https://github.com/d3/d3-brush/blob/master/README.md))
@@ -560,7 +636,7 @@ var x  = d3.set(values, function(d) {
 
 ### d3.map
 
-* Renamed: `map.forEach` -> `map.each`.
+* Renamed: `map.forEach` &#8594; `map.each`.
 * Argument order changed for each callback to `(value, key, map)`:
 
 ```javascript
@@ -594,8 +670,14 @@ In V3, the order was `(key, value)`. So if you would get:
 
 # Colors ([d3-color](https://github.com/d3/d3-color/blob/master/README.md))
 
-* All colors now have an opacity method exposed: `.opacity` which takes a value from 0 to 1.\
+* All colors now have an opacity method exposed: `.opacity` which takes a value from 0 to 1.
+
+--
+
 * You can also pass an optional opacity argument to `d3.rgb`, `d3.hsl`, `d3.lab`, `d3.hcl` or `d3.cubehelix`.
+
+--
+
 * You can now parse CSS color specifiers with `d3.color`:
 
 ```javascript
@@ -603,13 +685,20 @@ var red = d3.color("hsl(0, 80%, 50%)");
 // {h: 0, l: 0.5, s: 0.8, opacity: 1}
 ```
 
+--
+
 * The `toString` method will now return an `rgb` or `rgba` method.
+
+--
+
 * There is no more `.hsl` method. To convert a color to hsl call 
 
 ```javascript
 d3.hsl(red) 
 // Color instance: {h: 0, s: 0.8, l: 0.5, opacity: 1}
 ```
+
+--
 
 * New method called `color.displayable()` will return false if the color is [out of gamut](https://en.wikipedia.org/wiki/Gamut).
 
@@ -632,6 +721,7 @@ var e = d3.easeElastic.amplitude(1.2);
 ```
 
 [Visual reference](https://github.com/d3/d3-ease/blob/master/README.md) for the functions 
+
 [Animated version](http://bl.ocks.org/mbostock/248bac3b8e354a9103c4)
 
 ---
@@ -651,6 +741,7 @@ In V4:
 ```javascript
 dispatcher.call("foo", that, "Hello, Foo!");
 ```
+--
 
 * The `on` method accepts multiple event names, separated by a space:
 
@@ -664,11 +755,13 @@ dispatcher.on("foo bar", function(message) {
 
 # Dragging ([d3-drag](https://github.com/d3/d3-drag/blob/master/README.md))
 
-* `d3.behavior.drag` -> `d3.drag`
+* `d3.behavior.drag` &#8594; `d3.drag`
 
 * There's a new method called `subject` which lets you define an accessor to return what is being
 dragged. This is useful when using canvas, since there are no DOM nodes representing the content. The result
 of this accessor function call will be available on a drag event under d3.event.subject. Example: http://bl.ocks.org/mbostock/444757cc9f0fde320a5f469cd36860f4
+
+--
 
 * There is now an `on` method to bind to start, end and drag events:
 
@@ -682,13 +775,15 @@ canvas.call(d3.drag()
 
 ```
 
+--
+
 * There are also `d3.dragEnable` and `d3.dragDisable` methods to control dragging support at a 
 higher level.
 
 
 ---
 
-# Queue
+# Queue ([d3-queue](https://github.com/d3/d3-queue/blob/master/README.md))
 
 * A queue evaluates zero or more deferred asynchronous tasks with configurable concurrency
 * Used to be a seaprate library, now included in the default bundle as `d3.queue`.
@@ -716,10 +811,21 @@ d3.queue()
 
 # Force layout ([d3-force](https://github.com/d3/d3-force/blob/master/README.md))
 
-* Renamed: `d3.layout.force` -> `d3.forceSimulation`.
+* Renamed: `d3.layout.force` &#8594; `d3.forceSimulation`.
+
+--
+
 * The force algorithm changed to track node velocity (`node.vx` and `node.vy`) and position (`node.x` and `node.y`, not just position (formally `node.px` and `node.py`).
+
+--
+
 * Initial node position is now [deterministic](https://raw.githubusercontent.com/d3/d3-force/master/img/phyllotaxis.png)
-* If you need to find the closest node to a pointer, you no longer have to use a Voronoi SVG overlay, you can call `simulation.find`. å
+
+--
+
+* If you need to find the closest node to a pointer, you no longer have to use a Voronoi SVG overlay, you can call `simulation.find`. 
+
+--
 
 http://bl.ocks.org/mbostock/ad70335eeef6d167bc36fd3c04378048
 
@@ -742,8 +848,8 @@ simulation.force("link")
 # Heirarchies ([d3-heirarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md))
 
 * Lots of renaming:
- * `d3.layout.cluster` -> `d3.cluster`
- * `d3.layout.hierarchy` -> `d3.hierarchy`
+ * `d3.layout.cluster` &#8594; `d3.cluster`
+ * `d3.layout.hierarchy` &#8594; `d3.hierarchy`
 
 * New useful method `d3.stratify` to convert flat arrays of objects into the heirarchical strucutres required by heirarchical layouts:
 
@@ -775,6 +881,8 @@ var root = d3.stratify()
 * All heirarhical layouts now expect a heirarchy object. So if you already have json in the right form
 you first have to call `var struct = d3.heirarchy(myJsonObj)` to convert it and then pass it to your layout.
 
+--
+
 * There are new methods for aggregating special nodes like:
  * `nodes.leaves` to get just leaf nodes
  * `nodes.descendents`
@@ -788,10 +896,19 @@ you first have to call `var struct = d3.heirarchy(myJsonObj)` to convert it and 
 # Delimiter-Separated Values ([d3-dsv](https://github.com/d3/d3-dsv/blob/master/README.md))
 
 * Lots of renaming:
- * `d3.csv.parse` -> `d3.csvParse`
- * `d3.csv.parseRows` -> `d3.csvParseRows`
+
+ * `d3.csv.parse` &#8594; `d3.csvParse`
+ * `d3.csv.parseRows` &#8594; `d3.csvParseRows`
+
+--
+
 * The original `d3.csv` and `d3.tsv` for loading files have not been renamed.
+
+--
+
 * There is no more `d3.dsv` for custom formatters, you can now use `d3.dsvFormat("|")` to define a new formatter and parser.
+
+--
 
 * The parse method now exposes column names:
 
@@ -804,20 +921,13 @@ d3.csv("cars.csv", function(error, data) {
 
 ---
 
-# Chord diagrams ([d3-chord](https://github.com/d3/d3-chord/blob/master/README.md))
+# Polygons ([d3-polygon](https://github.com/d3/d3-polygon/blob/master/README.md))
 
-* Renaming:
- * `d3.layout.chord` -> `d3.chord`
- * `d3.svg.chord` -> `d3.ribbon`
+* `d3.geom.polygon` is gone and there is no `d3.polygon`.
 
-* There's a new `ribbon.context` method that lets you render to Canvas.
+* Now using `d3.polygonHull(points)` which returns the convex hull of the specified points. The returned hull is represented as an array containing a <i>subset</i> of the input points arranged in counterclockwise order.
 
----
-
-# Polygons
-
-* `d3.geom.polygon` is gone. 
-* Now using `d3.polygonHull(points)` which will return an array containing the input points arranged in clockwise order.
+--
 
 Some helper methoids to call with the results of polygonHull:
  * `d3.polygonArea` - area of polygon
@@ -827,12 +937,12 @@ Some helper methoids to call with the results of polygonHull:
 
 ---
 
-# Quadtree
+# Quadtree ([d3-quadtree](https://github.com/d3/d3-quadtree/blob/master/README.md))
 
 A quadtree recursively partitions two-dimensional space into squares, dividing each square into four equally-sized squares.
 http://bl.ocks.org/mbostock/9078690
 
-* `d3.geom.quadtree` -> `d3.quadtree`
+* `d3.geom.quadtree` &#8594; `d3.quadtree`
 * Quadtree is no longer a generator. Instead of defining a quadtree function that you pass your data to, you add your data to the quadtree you're generating using the `add`
  or `addAll` methods:
 
@@ -852,11 +962,20 @@ var quadtree = d3.quadtree()
 
 ---
 
-# Quadtree
+# Quadtree ([d3-quadtree](https://github.com/d3/d3-quadtree/blob/master/README.md))
 
 * Previously the quadtree generator returned the root node, now you can get it by calling `quadtree.root`.
+
+--
+
 * The `leaf` boolean flag on nodes is gone, now you can use `node.length` to determine if the node has children instead.
-* `quadtree.find` now takes an optional radius that its search will be restricted to - useful when your quadtree has a lot of points.\
+
+--
+
+* `quadtree.find` now takes an optional radius that its search will be restricted to - useful when your quadtree has a lot of points.
+
+--
+
 * Implementation no longer recursive and much faster.
 
 ---
@@ -865,11 +984,29 @@ var quadtree = d3.quadtree()
 # Other small but notable
 
 * Written in strict mode
+
+--
+
 * The default build is anonymous (aka no global `d3` object is exported if AMD or CommonJS is detected.)
+
+--
+
 * Uses only ASCII variable names and ASCII string literals. No more requirement to be explicit about UTF-8.
+
+--
+
 * `d3.format` now has text formatting: `d3.format(">10c")("foo"); // "       foo"`
+
+--
+
 * You can set a default locale based on country for some of your number parsing with `d3.formatDefaultLocale` [link](https://npmcdn.com/d3-format@1.0.1/locale/)
+
+--
+
 * New random number generators for exponential and uniform distributions.
+
+--
+
 * `d3.xhr` is now `d3.request`, which also supports basic auth by calling `.user` and `.password` methods. 
 
 
@@ -877,11 +1014,24 @@ var quadtree = d3.quadtree()
 
 # Not covered:
 
-* [d3-format](https://github.com/d3/d3-format/blob/master/README.md) - number format [changes](https://github.com/d3/d3/blob/master/CHANGES.md#number-formats-d3-format)
-* [d3-geo](https://github.com/d3/d3-geo/blob/master/README.md) - geographies (mostly lots of renaming) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#geographies-d3-geo)
+* Chord diagrams ([d3-chord](https://github.com/d3/d3-chord/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#chords-d3-chord)
+* Number formatting ([d3-format](https://github.com/d3/d3-format/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#number-formats-d3-format)
+* Geography ([d3-geo](https://github.com/d3/d3-geo/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#geographies-d3-geo)
 * Heirarchical layouts ([d3-heirarchy](https://github.com/d3/d3-hierarchy)) such as treemaps, circle packing etc. [changes](https://github.com/d3/d3/blob/master/CHANGES.md#hierarchies-d3-hierarchy)
 * Interpolators ([d3-interpolate](https://github.com/d3/d3-interpolate/blob/master/README.md)) - interpolation methods [changes](https://github.com/d3/d3/blob/master/CHANGES.md#interpolators-d3-interpolate)
 * Time formats ([d3-time-format](https://github.com/d3/d3/blob/master/CHANGES.md#time-formats-d3-time-format)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#time-formats-d3-time-format)
 * Timers ([d3-timer](https://github.com/d3/d3-timer/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#timers-d3-timer)
 * Voronoi diagrams ([d3-voronoi](https://github.com/d3/d3-voronoi/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#voronoi-diagrams-d3-voronoi)
 * Zooming ([d3-zoom](https://github.com/d3/d3-zoom/blob/master/README.md)) [changes](https://github.com/d3/d3/blob/master/CHANGES.md#zooming-d3-zoom)
+
+---
+
+class: center, middle, inverse
+
+# Thanks!
+
+<div class="bottom-left">
+<a href="http://ireneros.com">Irene Ros</a><br/>
+<a href="http://twitter.com/ireneros">@ireneros</a><br/>
+irene@bocoup.com <br/>
+</div>

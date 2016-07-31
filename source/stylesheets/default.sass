@@ -12,13 +12,19 @@
   font-weight: 400
   src: local("fonts/Yanone Kaffeesatz Regular"), local("fonts/YanoneKaffeesatz-Regular"), url(fonts/YanoneKaffeesatz-Regular.woff) format("woff")
 
+@font-face
+  font-family: 'Inconsolata'
+  font-style: normal
+  font-weight: 400
+  src: local("fonts/Inconsolata Regular"), local("fonts/inconsolata"), url(fonts/inconsolata.woff) format("woff")
+
 
 body
   font-family: 'Droid Serif'
   font-size: 20px
 
 h1, h2, h3
-  font-family: 'Helvetica'
+  font-family: 'Yanone Kaffeesatz'
   font-weight: 400
   margin-bottom: 0
 
@@ -45,18 +51,28 @@ li p
   font-size: 2em
 
 a
-  color: rgb(249, 38, 114)
+  color: orange
   text-decoration: none
   > code
     color: rgb(249, 38, 114)
     text-decoration: none
 
+.remark-code 
+  font-size: initial
+
+.hljs-default .hljs 
+  background: #dce5e8
+  
 code
+  font-family: 'Inconsolata'
   -moz-border-radius: 5px
   -web-border-radius: 5px
-  background: #e7e8e2
+  background: #dce5e8
   border-radius: 5px
   font-size: 16px
+  padding: 5px
+  padding-top: 2px
+  padding-bottom: 2px
 
 .pull-left
   float: left
@@ -132,8 +148,10 @@ code
 /* Presentation-specific styles
 
 .remark-slide-container:nth-child(1) .remark-slide-content, .inverse
-  background-color: #272822
+  background-color: #37474F
   color: #777872
+  border-left: 20px solid #263238
+  text-align: left
 
 .remark-slide-container:nth-child(1) .remark-slide-content
   h1, h2
@@ -198,8 +216,9 @@ img
 .bottom-left 
   position: absolute
   bottom: 10%
-  left: 20%
   text-align: left
+  color: white
+  font-size: 0.8em
   
 h1 code, h2 code, h3 code, h4 code
   font-size: inherit
