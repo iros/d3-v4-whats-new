@@ -1,9 +1,7 @@
 # D3 V4 - What's new?
 
-Based on the excellent Change log from @mbostock
-https://github.com/d3/d3/blob/master/CHANGES.md#table-of-contents
-
-and other collected notes.
+Based on the excellent [Change log](https://github.com/d3/d3/blob/master/CHANGES.md#table-of-contents) 
+from @mbostock and other collected notes.
 
 ### To run locally:
 
