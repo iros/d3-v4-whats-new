@@ -5,8 +5,9 @@ class: center, middle
 Play along:
 
 [D3 v3 playground](http://jsbin.com/degoxo/1/edit?html,js,console,output) |
-[D3 v4 playground]( )
+[D3 v4 playground](http://jsbin.com/yoruka/1/edit?html,js,console,output)
 
+[![bocoup](stylesheets/images/bocoup.png)](http://bocoup.com/datavis)
 <div class="bottom-left">
 <a href="http://ireneros.com">Irene Ros</a><br/>
 <a href="http://twitter.com/ireneros">@ireneros</a><br/>
@@ -1009,6 +1010,7 @@ Some helper methods to call with the results of polygonHull:
  * `d3.polygonContains` - checks if a point is inside of a polygon.
  * `d3.polygonLength` - returns the length of the perimiter.
 
+Example [here](http://bl.ocks.org/mbostock/6f14f7b7f267a85f7cdc)
 ---
 
 # Quadtree ([d3-quadtree](https://github.com/d3/d3-quadtree/blob/master/README.md))
@@ -1107,8 +1109,14 @@ class: center, middle, inverse
 
 # Thanks!
 
+
+
 <div class="bottom-left">
 <a href="http://ireneros.com">Irene Ros</a><br/>
 <a href="http://twitter.com/ireneros">@ireneros</a><br/>
-irene@bocoup.com <br/>
+irene@bocoup.com <br/><br/>
+<a href="http://bocoup.com/datavis">
+  <img src="stylesheets/images/bocoup.png" />
+</a><br />
+
 </div>
