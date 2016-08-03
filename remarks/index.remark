@@ -424,7 +424,7 @@ x(2); // undefined
 In v3:
 
 ```javascript
-var color = d3.scaleCategory10();
+var color = d3.scale.category10();
 ```
 
 In V4:
@@ -526,7 +526,7 @@ var x = d3.scaleLinear()
   .domain([1,10])
   .range([1,300]);
 
-var axis = d3.axisBottom(x);
+var axis = d3.axisTop(x);
 
 d3.select("body").append("svg")
     .attr("class", "axis")
