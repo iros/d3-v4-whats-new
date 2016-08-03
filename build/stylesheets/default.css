@@ -17,61 +17,70 @@
 /* line 22, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 body {
   font-family: "Droid Serif";
-  font-size: 20px; }
+  font-size: 20px;
+  background: black; }
 
-/* line 26, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 27, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+.remark-container {
+  background: black; }
+
+/* line 30, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+.remark-slide-scaler {
+  box-shadow: none; }
+
+/* line 33, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 h1, h2, h3 {
   font-family: "Yanone Kaffeesatz";
   font-weight: 400;
   margin-bottom: 0; }
 
-/* line 31, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 38, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 h1 {
   font-size: 4em; }
 
-/* line 34, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 41, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 h2 {
   font-size: 2em; }
 
-/* line 37, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 44, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 h3 {
   font-size: 1.6em; }
 
-/* line 40, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 47, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .footnote {
   position: absolute;
   bottom: 3em; }
 
-/* line 44, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 51, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 li p {
   line-height: 1.25em; }
 
-/* line 47, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 54, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .red {
   color: #fa0000; }
 
-/* line 50, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 57, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .large {
   font-size: 2em; }
 
-/* line 53, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 60, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 a {
   color: orange;
   text-decoration: none; }
-  /* line 56, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 63, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   a > code {
     color: #f92672;
     text-decoration: none; }
 
-/* line 60, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 67, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .remark-code {
   font-size: initial; }
 
-/* line 63, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 70, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .hljs-default .hljs {
   background: #dce5e8; }
 
-/* line 66, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 73, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 code {
   font-family: "Inconsolata";
   -moz-border-radius: 5px;
@@ -83,166 +92,166 @@ code {
   padding-top: 2px;
   padding-bottom: 2px; }
 
-/* line 77, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 84, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .pull-left {
   float: left;
   width: 47%; }
 
-/* line 81, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 88, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .pull-right {
   float: right;
   width: 47%; }
-  /* line 84, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 91, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   .pull-right ~ p {
     clear: both; }
 
-/* line 88, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 95, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slideshow .slide .content code {
   font-size: 0.8em; }
-/* line 90, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 97, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slideshow .slide .content pre code {
   font-size: 0.9em;
   padding: 15px; }
 
-/* line 94, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 101, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .inverse {
   background: #272822;
   color: #777872;
   text-shadow: 0 0 20px #333; }
-  /* line 98, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 105, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   .inverse h1, .inverse h2 {
     color: #f3f3f3;
     line-height: 0.8em; }
 
 /* Slide-specific styling */
-/* line 104, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 111, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slide-inverse .footnote {
   bottom: 12px;
   left: 20px; }
 
-/* line 108, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 115, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slide-how .slides {
   font-size: 0.9em;
   position: absolute;
   top: 151px;
   right: 140px; }
-  /* line 113, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 120, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides h3 {
     margin-top: 0.2em; }
-  /* line 115, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 122, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .first, #slide-how .slides .second {
     padding: 1px 20px;
     height: 90px;
     width: 120px;
     box-shadow: 0 0 10px #777; }
-  /* line 122, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 129, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .first {
     background: #fff;
     position: absolute;
     top: 20%;
     left: 20%;
     z-index: 1; }
-  /* line 128, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 135, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .second {
     position: relative;
     background: #fff;
     z-index: 0; }
 
 /* Two-column layout */
-/* line 135, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 142, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .left-column {
   color: #777;
   width: 20%;
   height: 92%;
   float: left; }
-  /* line 140, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 147, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   .left-column h2:last-of-type, .left-column h3:last-child {
     color: #000; }
 
-/* line 143, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 150, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .right-column {
   width: 75%;
   float: right;
   padding-top: 2em; }
 
 /* Presentation-specific styles */
-/* line 150, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 157, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .remark-slide-container:nth-child(1) .remark-slide-content, .inverse {
   background-color: #37474F;
   color: #777872;
   border-left: 20px solid #263238;
   text-align: left; }
 
-/* line 157, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 164, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .remark-slide-container:nth-child(1) .remark-slide-content h1, .remark-slide-container:nth-child(1) .remark-slide-content h2 {
   color: #f3f3f3;
   line-height: 0.8em; }
 
-/* line 162, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 169, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .inverse h1, .inverse h2 {
   color: #f3f3f3;
   line-height: 0.8em; }
 
-/* line 166, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 173, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .remark-slide-container:nth-child(1) .remark-slide-content a, .inverse a {
   color: orange; }
 
-/* line 169, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 176, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .smaller code {
   font-size: 12px; }
 
 /* Slide-specific styling */
-/* line 174, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 181, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slide-inverse .footnote {
   bottom: 12px;
   left: 20px; }
 
-/* line 178, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 185, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 #slide-how .slides {
   font-size: 0.9em;
   position: absolute;
   top: 151px;
   right: 140px; }
-  /* line 183, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 190, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides h3 {
     margin-top: 0.2em; }
-  /* line 185, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 192, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .first, #slide-how .slides .second {
     padding: 1px 20px;
     height: 90px;
     width: 120px;
     box-shadow: 0 0 10px #777; }
-  /* line 192, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 199, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .first {
     background: #fff;
     position: absolute;
     top: 20%;
     left: 20%;
     z-index: 1; }
-  /* line 198, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 205, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   #slide-how .slides .second {
     position: relative;
     background: #fff;
     z-index: 0; }
 
-/* line 203, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 210, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 img {
   max-width: 100%; }
 
-/* line 206, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 213, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .images img {
   max-height: 100px;
   display: inline-block;
   margin-right: 1em; }
-  /* line 210, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 217, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   .images img:last-child {
     margin-right: 0; }
 
-/* line 213, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 220, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .center ul {
   list-style-type: none; }
 
-/* line 216, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 223, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .bottom-left {
   position: absolute;
   bottom: 10%;
@@ -250,26 +259,26 @@ img {
   color: white;
   font-size: 0.8em; }
 
-/* line 223, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 230, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 h1 code, h2 code, h3 code, h4 code {
   font-size: inherit;
   font-weight: 400; }
 
-/* line 227, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 234, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .paddingless {
   margin-top: 20px;
   margin-left: -50px; }
 
-/* line 231, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 238, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .scrollable {
   overflow-y: scroll; }
 
 /* Presentation-specific styles */
-/* line 236, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+/* line 243, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
 .images img {
   max-height: 100px;
   display: inline-block;
   margin-right: 1em; }
-  /* line 240, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
+  /* line 247, /Users/iros/dev/talks/d3-v4-whats-new/source/stylesheets/default.sass */
   .images img:last-child {
     margin-right: 0; }

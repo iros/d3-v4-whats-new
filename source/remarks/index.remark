@@ -1,11 +1,14 @@
-class: center, middle
+class: center, middle, inverse
 
 # D3 V4 - What's new?
 
 Play along:
 
 [D3 v3 playground](http://jsbin.com/degoxo/1/edit?html,js,console,output) |
-[D3 v4 playground](http://jsbin.com/yoruka/1/edit?html,js,console,output)
+[D3 v4 playground](http://jsbin.com/yoruka/1/edit?html,js,console,output) 
+
+Slides: [iros.github.io/d3-v4-whats-new/](http://iros.github.io/d3-v4-whats-new/#1)
+
 
 [![bocoup](stylesheets/images/bocoup.png)](http://bocoup.com/datavis)
 <div class="bottom-left">
@@ -114,7 +117,7 @@ d3.min(settlersData, function(d, i, data) {
 });
 ```
 
-Previously some methods were not consistent about this (for example, `d3.quantiles`).
+Previously some methods were not consistent about this (for example, `d3.quantile`).
 
 ---
 
@@ -165,7 +168,30 @@ You can see more examples in the shapes module: [d3-shape](https://github.com/d3
 
 --
 
-* `selection.insert` will now always add elements to the beginning.
+* `selection.insert` -will now always add elements to the beginning.- does not add elements
+to the beginning by default. It inserts them before the first element that matches the specified
+before selector.
+
+---
+
+# Selections
+
+* `selection.append` now inserts elements in the order of the data bound, instead of
+at the end:
+
+For example, in v3:
+``` javascript
+d3.select("body").selectAll("span").data([1, 3, 5], String).enter().append("span").text(String);
+d3.select("body").selectAll("span").data([1, 2, 3, 4, 5], String).enter().append("span").text(String);
+// 13524
+```
+
+In v4:
+``` javascript
+d3.select("body").selectAll("span").data([1, 3, 5], String).enter().append("span").text(String);
+d3.select("body").selectAll("span").data([1, 2, 3, 4, 5], String).enter().append("span").text(String);
+// 12345
+```
 
 --
 
@@ -228,7 +254,7 @@ In v3:
 ```javascript
 d3.selectAll("div.states")
   .call(function() {
-    d3.selectAll(this).style('color', 'red');
+    this.style('color', 'red');
   })
 ```
 
@@ -743,8 +769,8 @@ var e = d3.easeElastic.amplitude(1.2);
 
 # Dispatching ([d3-dispatch](https://github.com/d3/d3-dispatch/blob/master/README.md))
 
-* Instead of exposing individual methods for each event type, you just use `call` or `apply` to 
-fire off an event (note these are different from the `selection.call` or `selection.apply`).
+* Instead of exposing individual methods for each event type, you just use `call` to 
+fire off an event (note these are different from the `selection.call`).
 
 In V3:
 
