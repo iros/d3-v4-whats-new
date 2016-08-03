@@ -166,12 +166,6 @@ You can see more examples in the shapes module: [d3-shape](https://github.com/d3
 * Selections are immutable (parents and elemnts never change, though their attributes do.) For example.
 `selection.sort` will return a new selection.
 
---
-
-* `selection.insert` -will now always add elements to the beginning.- does not add elements
-to the beginning by default. It inserts them before the first element that matches the specified
-before selector.
-
 ---
 
 # Selections
