@@ -163,7 +163,7 @@ You can see more examples in the shapes module: [d3-shape](https://github.com/d3
 
 --
 
-* Selections are immutable (parents and elemnts never change, though their attributes do.) For example.
+* Selections are immutable (parents and elements never change, though their attributes do.) For example.
 `selection.sort` will return a new selection.
 
 ---
