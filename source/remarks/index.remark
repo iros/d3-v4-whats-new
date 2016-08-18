@@ -470,7 +470,7 @@ var hist = d3.histogram()
 
 --
 
-* The `bins` method, was renamed to `thresholds`
+* The `bins` method was renamed to `thresholds`
 
 --
 
