@@ -949,7 +949,7 @@ var root = d3.stratify()
 
 # Hierarchies ([d3-hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md))
 
-* All heirarhical layouts now expect a hierarchy object. So if you already have json in the right form
+* All hierarchical layouts now expect a hierarchy object. So if you already have json in the right form
 you first have to call `var struct = d3.hierarchy(myJsonObj)` to convert it and then pass it to your layout.
 
 --
