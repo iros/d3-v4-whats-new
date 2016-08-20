@@ -163,7 +163,7 @@ You can see more examples in the shapes module: [d3-shape](https://github.com/d3
 
 --
 
-* Selections are immutable (parents and elemnts never change, though their attributes do.) For example.
+* Selections are immutable (parents and elements never change, though their attributes do.) For example.
 `selection.sort` will return a new selection.
 
 ---
@@ -470,7 +470,7 @@ var hist = d3.histogram()
 
 --
 
-* The `bins` method, was renamed to `thresholds`
+* The `bins` method was renamed to `thresholds`
 
 --
 
@@ -949,7 +949,7 @@ var root = d3.stratify()
 
 # Hierarchies ([d3-hierarchy](https://github.com/d3/d3-hierarchy/blob/master/README.md))
 
-* All heirarhical layouts now expect a hierarchy object. So if you already have json in the right form
+* All hierarchical layouts now expect a hierarchy object. So if you already have json in the right form
 you first have to call `var struct = d3.hierarchy(myJsonObj)` to convert it and then pass it to your layout.
 
 --
