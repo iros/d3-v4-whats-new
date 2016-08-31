@@ -1098,7 +1098,7 @@ var quadtree = d3.quadtree()
 
 --
 
-* You can set a default locale based on country for some of your number parsing with `d3.formatDefaultLocale` [link](https://npmcdn.com/d3-format@1.0.1/locale/)
+* You can set a default locale based on country for some of your number parsing with `d3.formatDefaultLocale` [link](https://unpkg.com/d3-format@1.0.1/locale/)
 
 --
 
